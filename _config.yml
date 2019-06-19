@@ -3,20 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
-language:
+title: 墨鱼
+subtitle:  #世号墨鱼为乌贼，何为独得贼名？盖其腹中之墨，可写伪契券，宛然如新，过半年则澹然如无字，故狡者专以此为骗诈之谋，故諡曰贼云。
+description: 前端开发相关技术博文
+keywords: 前端开发 react vue 小程序 JavaScript 计算机基础
+author: swor
+language: zh-cn
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://moyu.ltd
 root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
+permalink: :category/:title
+permalink_defaults: 
 
 # Directory
 source_dir: source
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: solar
+theme: swor
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
