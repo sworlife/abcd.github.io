@@ -80,3 +80,4 @@ theme: solar
 deploy:
   type: git
   repo: https://github.com/sworlife/blog.github.io.git
+  branch: public
