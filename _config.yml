@@ -79,5 +79,5 @@ theme: solar
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/sworlife/blog.github.io.git
-  branch: public
+  repo: https://github.com/sworlife/sworlife.github.io.git
+  branch: master
