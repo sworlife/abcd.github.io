@@ -2,9 +2,9 @@ nav:
   Home: /home/
   About: /about/
   Writing: /archives/
-  Projects: http://github.com/tzvetkov75
+  Projects: https://github.com/sworlife/sworlife.github.io
 
-projects_url: http://github.com/tzvetkov75
+projects_url: https://github.com/sworlife/sworlife.github.io
 
 customize:
     gravatar:
@@ -27,10 +27,10 @@ customize:
         url: /images/apple-touch-icon.png
         gravator: false
     social_links:
-        github: https://github.com/tzvetkov75/solar-theme-hexo
-        twitter: /
-        facebook: /
-        linkedin: /
+        github: https://github.com/sworlife/sworlife.github.io
+        # twitter: /
+        # facebook: /
+        # linkedin: /
     post_count: 5
     highlight: lightcode
 
