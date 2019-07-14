@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="前端开发相关技术博文">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="swor">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="git commit 规范工具的应用">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="前端开发相关技术博文">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="墨鱼">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://moyu.ltd/images/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://moyu.ltd/images/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>git commit 规范工具的应用 - 墨鱼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">墨鱼</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                文章
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/sworlife/sworlife.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/images/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>git commit 规范工具的应用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-07-14
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/工程化/">#工程化</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/前端技术/">前端技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="git-commit-规范"><a href="#git-commit-规范" class="headerlink" title="git commit 规范"></a>git commit 规范</h2><h3 id="Angular-提交规范"><a href="#Angular-提交规范" class="headerlink" title="Angular 提交规范"></a>Angular 提交规范</h3><p>编码需要规范，git 提交代码也应该有其规范，业内普遍参考 Angular 提交的规范。下面来介绍 Angular 的提交规范：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt; #header</span><br><span class="line">// 空一行</span><br><span class="line">&lt;body&gt;</span><br><span class="line">// 空一行</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+
+<p>从格式上看，整个 message 分为了 三个部分：</p>
+<ul>
+<li><p>header: 整个 header 部分尽量不要这行。它包含三个字段：type（必需）、scope（可选）和 subject(必需)。</p>
+<ul>
+<li><p>type</p>
+<ul>
+<li>feat: 新功能 feature</li>
+<li>fix: 修补 bug</li>
+<li>docs: 文档 documentation</li>
+<li>style: 格式——不影响代码运行的变动</li>
+<li>refactor: 重构——既不是新增功能，也不是修改 bug 的代码变动</li>
+<li>test: 增加测试</li>
+<li>chore: 构建多次或辅助工具的变动</li>
+<li>revert: 用于撤销以前的 commit，有着特定的格式：<ul>
+<li>header: <code>rever: &lt;被撤销的header&gt;</code></li>
+<li>body: <code>this reverts commit &lt;被撤销 commit 的 SHA 标识符&gt;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">revert: feat(pencil): add &apos;graphiteWidth&apos; option</span><br><span class="line"></span><br><span class="line">This reverts commit 667ecc1654a317a13331b17617d973392f415f02.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>scope: 用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
+</li>
+<li><p>subject: 是对 commit 目的的简短描述</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如 change，而不是 changed 或 changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>body: 是对 commit 的详细描述，可以分成多行</p>
+<ul>
+<li>使用第一人称现在时</li>
+<li>应该说明代码变动的动机，以及与之前行为的对比<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">More detailed explanatory text, if necessary.  Wrap it to </span><br><span class="line">about 72 characters or so. </span><br><span class="line"></span><br><span class="line">Further paragraphs come after blank lines.</span><br><span class="line"></span><br><span class="line">- Bullet points are okay, too</span><br><span class="line">- Use a hanging indent</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>footer: 通常只用于两种情况</p>
+<ul>
+<li><p>不兼容变动——如果当前代码与上一个版本不兼容，则 footer 部分以 <code>BREAKING CHANGE</code> 开头，后面是对变动的描述，以及变动理由和迁移方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">BREAKING CHANGE: isolate scope bindings definition has changed.</span><br><span class="line"></span><br><span class="line">To migrate the code follow the example below:</span><br><span class="line"></span><br><span class="line">Before:</span><br><span class="line"></span><br><span class="line">scope: &#123;</span><br><span class="line">  myAttr: &apos;attribute&apos;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">After:</span><br><span class="line"></span><br><span class="line">scope: &#123;</span><br><span class="line">  myAttr: &apos;@&apos;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">The removed `inject` wasn&apos;t generaly useful for directives so there should be no code using it.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭 issue——如果当前 commit 针对某个 issue，那么可以在 footer 部分关闭这个issue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Closes #123, #245, #992</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="规范的意义"><a href="#规范的意义" class="headerlink" title="规范的意义"></a>规范的意义</h3><p>这里说说规范的好处，看看是否能够击中你工作中的痛点：</p>
+<ol>
+<li>提供更多的历史信息，方便快速浏览。每个 commit 占据一行，只看行首，就知道其目的。</li>
+<li>可以过滤某些 commit（比如文档改动），便于快速查找信息</li>
+<li>可以直接从 commit 生产 change log。change log 是发布新版本时，用来说明与上一次版本差异的文档</li>
+</ol>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><ol>
+<li>change log 中，最后只包括 type、feat、fix 类型，其他（docs、chore、style、refactor、test）建议不添加。change log 作为说明与上一个版本差异的文档，其主要受众是产品和测试。</li>
+<li>revert commit 与 被撤销的 commit，在同一个发布版本（release）中，那么他们都不会出现在 chang log 中。如果两者在不同的发布版本，那么 revert commit 应该出现。</li>
+</ol>
+<h2 id="git-commit-工具"><a href="#git-commit-工具" class="headerlink" title="git commit 工具"></a>git commit 工具</h2><h3 id="Commitizen"><a href="#Commitizen" class="headerlink" title="Commitizen"></a>Commitizen</h3><p><a href="https://github.com/commitizen/cz-cli" target="_blank" rel="noopener">Commitizen</a> 是一个用来撰写合格的 commit message 的工具。</p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g commitizen</span><br></pre></td></tr></table></figure>
+
+<h3 id="cz-conventional-changelog"><a href="#cz-conventional-changelog" class="headerlink" title="cz-conventional-changelog"></a>cz-conventional-changelog</h3><p>cz-conventional-changelog(Angular 规范) 用于为 Commitizen 提供 commit message 格式规范的 npm 包</p>
+<p>其概念就是一个规范 <a href="https://github.com/commitizen/cz-cli#adapters" target="_blank" rel="noopener">Adapters</a></p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cz-conventional-changelog</span><br></pre></td></tr></table></figure>
+
+<p>通过 package.json 的配置引入 Commitizen：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 配置在 package.json 的根节点</span><br><span class="line">&quot;config&quot;: &#123;</span><br><span class="line">    &quot;commitizen&quot;: &#123;</span><br><span class="line">      &quot;path&quot;: &quot;cz-conventional-changelog&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">// 或者通过 .czrc 配置文件进行配置</span><br><span class="line">// .czrc</span><br><span class="line">&#123; &quot;path&quot;: &quot;cz-conventional-changelog&quot; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="git-cz"><a href="#git-cz" class="headerlink" title="git-cz"></a>git-cz</h3><p>git-cz 是 commitizen 的命令行工具，有了这个 npm 包，才能使用命令调出交互界面，方便快捷的生成合格的commit message。</p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g git-cz</span><br><span class="line">git-cz</span><br><span class="line"></span><br><span class="line">// npm 版本要求 5.2+</span><br><span class="line">npx git-cz</span><br></pre></td></tr></table></figure>
+
+<p>运行命令可看到如下界面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git-cz</span><br><span class="line">// or</span><br><span class="line">git cz</span><br><span class="line">// or</span><br><span class="line">npx git-cz</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/33422051/59660560-7945e580-91db-11e9-8e4a-c58470549e09.png" alt="commitizen_1"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><p>配置 Commitizen 需要三个 npm 包：Commitizen、cz-conventional-changelog、git-cz。</p>
+</li>
+<li><p>commitizen 有两个配置文件</p>
+<ul>
+<li><p>.czrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// .czrc</span><br><span class="line">&#123; &quot;path&quot;: &quot;cz-conventional-changelog&quot; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>changelog.config.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">// changelog.config.js</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">        &quot;test&quot;,</span><br><span class="line">        &quot;feat&quot;,</span><br><span class="line">        &quot;fix&quot;,</span><br><span class="line">        &quot;chore&quot;,</span><br><span class="line">        &quot;docs&quot;,</span><br><span class="line">        &quot;refactor&quot;,</span><br><span class="line">        &quot;style&quot;,</span><br><span class="line">        &quot;ci&quot;,</span><br><span class="line">        &quot;perf&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;maxMessageLength&quot;: 64,</span><br><span class="line">    &quot;minMessageLength&quot;: 3,</span><br><span class="line">    &quot;questions&quot;: [</span><br><span class="line">        &quot;type&quot;,</span><br><span class="line">        &quot;scope&quot;,</span><br><span class="line">        &quot;subject&quot;,</span><br><span class="line">        &quot;body&quot;,</span><br><span class="line">        &quot;breaking&quot;,</span><br><span class="line">        &quot;issues&quot;,</span><br><span class="line">        &quot;lerna&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;scopes&quot;: [],</span><br><span class="line">    &quot;types&quot;: &#123;</span><br><span class="line">        &quot;chore&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;Build process or auxiliary tool changes&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;🤖&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;chore&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ci&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;CI related changes&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;🎡&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;ci&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;docs&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;Documentation only changes&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;✏️&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;docs&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;feat&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;A new feature&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;🎸&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;feat&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;fix&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;A bug fix&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;🐛&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;fix&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;perf&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;A code change that improves performance&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;⚡️&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;perf&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;refactor&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;A code change that neither fixes a bug or adds a feature&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;💡&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;refactor&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;release&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;Create a release commit&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;🏹&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;release&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;style&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;Markup, white-space, formatting, missing semi-colons...&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;💄&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;style&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;test&quot;: &#123;</span><br><span class="line">        &quot;description&quot;: &quot;Adding missing tests&quot;,</span><br><span class="line">        &quot;emoji&quot;: &quot;💍&quot;,</span><br><span class="line">        &quot;value&quot;: &quot;test&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>npx 相关配置，请移步<a href="https://github.com/commitizen/cz-cli" target="_blank" rel="noopener">官网</a></p>
+</li>
+<li><p>为公司多个项目统一规范，可生成自己的 Commitizen npm 包，具体操作参加<a href="https://github.com/commitizen/cz-cli#commitizen-for-multi-repo-projects" target="_blank" rel="noopener">commitizen for multi-repo projects</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="校验-commit-是否符合规范"><a href="#校验-commit-是否符合规范" class="headerlink" title="校验 commit 是否符合规范"></a>校验 commit 是否符合规范</h2><p><a href="https://conventional-changelog.github.io/commitlint/#/" target="_blank" rel="noopener">https://conventional-changelog.github.io/commitlint/#/</a></p>
+<h2 id="生成-change-log"><a href="#生成-change-log" class="headerlink" title="生成 change log"></a>生成 change log</h2><p><a href="https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli" target="_blank" rel="noopener">https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/sworlife/sworlife.github.io" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 swor<br></p>
+                <!-- <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p> -->
+                <!-- <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

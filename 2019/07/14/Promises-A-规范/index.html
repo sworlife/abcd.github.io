@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="前端开发相关技术博文">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="swor">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Promises/A+ 规范">
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="前端开发相关技术博文">
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="墨鱼">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://moyu.ltd/images/home-bg.jpg">
+    
+
+        <meta name="twitter:card" content="summary_large_image">
+
+    
+
+    
+        <meta name="twitter:image" content="http://moyu.ltd/images/home-bg.jpg">
+    
+
+    <!-- Title -->
+    
+    <title>Promises/A+ 规范 - 墨鱼</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">墨鱼</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                文章
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                标签
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                分类
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/sworlife/sworlife.github.io">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/images/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Promises/A+ 规范</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-07-14
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/翻译/">#翻译</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/前端技术/">前端技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><p><a href="http://wiki.commonjs.org/wiki/Promises" target="_blank" rel="noopener">原文链接 - Promises</a></p>
+<h3 id="Promises-1"><a href="#Promises-1" class="headerlink" title="Promises"></a>Promises</h3><p>Promises 提供一个定义良好的接口，用于与一个对象交互，该对象表示异步执行的操作的结果，在任何给定的时间点可以完成，也可以不完成。通过利用一个接口标准，不同部件可以返回异步操作的 promises，并且其消费者能以可预测的方式利用这个 promises 。Promises 也能提供基本实体，以便使用它们进行语法上更方便的语言级扩展，从而帮助实现异步性。</p>
+<h3 id="现有的技术"><a href="#现有的技术" class="headerlink" title="现有的技术"></a>现有的技术</h3><p><strong>略</strong></p>
+<h3 id="提案"><a href="#提案" class="headerlink" title="提案"></a>提案</h3><ul>
+<li><a href="http://wiki.commonjs.org/wiki/Promises/A" target="_blank" rel="noopener">Promises/A</a> by Kris Zyp — “Thenables”</li>
+<li><a href="http://wiki.commonjs.org/wiki/Promises/B" target="_blank" rel="noopener">Promises/B</a> by Kris Kowal — Opaque Q API</li>
+<li><a href="http://wiki.commonjs.org/wiki/Promises/KISS" target="_blank" rel="noopener">Promises/KISS</a> by AJ ONeal</li>
+<li>Promises/C has been redacted</li>
+<li><a href="http://wiki.commonjs.org/wiki/Promises/D" target="_blank" rel="noopener">Promises/D</a> by Kris Kowal — “Promise-sendables”, for interoperable instances of Promises/B.</li>
+</ul>
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><ul>
+<li><ol>
+<li>如果一个函数接受一个 promise 作为它的输入，那么函数本身必须返回一个 promise 作为它的输出。提供一个简单机制用以保证，处理程序员错误，非决定论和恶意：</li>
+</ol>
+</li>
+<li><p>1.1. 保护函数内部的一致性，使其避免来自提供输入 promise 的提供者的攻击</p>
+</li>
+<li><p>1.2. 保护函数内部的一致性，使其避免来自消费输出 promise 的消费者的攻击</p>
+</li>
+<li><p>1.3. 保护每个接受输出 promise 的接收方不受其他接收方的影响</p>
+</li>
+<li><p>1.4. 阻止把输入的 promise 泄露给输出消费者。表达式的返回值绝不能是输入 promise，也不能让消费者获取对输入promise 直接接的访问权</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function API(input) &#123;</span><br><span class="line">    return when(input, function (input) &#123;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>例如，一个密码校验 API 必须能持有对密码散列表的引用，但绝不能让使用者直接访问这些散列表中的任何一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function PasswordChecker(accounts) &#123;</span><br><span class="line">    return function (user, password) &#123;</span><br><span class="line">        var passwordHash = Q.get(accounts, user);</span><br><span class="line">        return when(passwordHash, function (passwordHash) &#123;</span><br><span class="line">            if (hash(password) === passwordHash)</span><br><span class="line">                return true;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// returns a password checking capability</span><br><span class="line">// but does not return access to the passwordHash</span><br><span class="line">return PasswordChecker(accounts);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>1.4. 当输入解析后，如果发现还有额外未解析的输入，允许函数转发一个新的 promise</p>
+</li>
+<li><p>1.5. 允许函数要么转发其输入的失败，要么通过转发已解析的值从失败中恢复，要么通过转发一个新的承诺来恢复，最终解析或稍后失败。</p>
+</li>
+<li><ol start="2">
+<li>避免交叉危险</li>
+</ol>
+</li>
+<li><p>2.1. 防止 proimise 消费者在以下反例中直接使用 promise 提供者的回调:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var internalCounter = 0;</span><br><span class="line"></span><br><span class="line">// /!\ HAZARD: untrusted promise given direct access to a</span><br><span class="line">// function that has the capability to alter internal</span><br><span class="line">// state, either during the same turn or in any future turn</span><br><span class="line">promise(&quot;when&quot;, function () &#123;</span><br><span class="line">    internalCounter++;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// /!\ HAZARD: untrusted promise given direct access to a</span><br><span class="line">// function that has the capability to alter internal</span><br><span class="line">// state, either during the same turn or in any future turn</span><br><span class="line">promise.when(function () &#123;</span><br><span class="line">    internalCounter++;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// /!\ HAZARD: untrusted promise given direct access to a</span><br><span class="line">// function that has the capability to alter internal</span><br><span class="line">// state, either during the same turn or in any future turn</span><br><span class="line">promise.then(function () &#123;</span><br><span class="line">    internalCounter++;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ASSERT.equal(internalCounter, 0);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.2. 防止 promise 提供者在调用消费者的内部回调时调用与注册时相同的轮数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// /!\ HAZARD: untrusted promise given direct access to a</span><br><span class="line">// function that has the capability to alter internal</span><br><span class="line">// state, either during the same turn or in any future turn</span><br><span class="line">var internalCounter = 0;</span><br><span class="line">when(promise, function () &#123;</span><br><span class="line">    internalCounter++;</span><br><span class="line">&#125;);</span><br><span class="line">ASSERT.equal(internalCounter, 0);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.3. 防止 promise 提供者多次调用消费者内部回调或者错误回调。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var internalCounter = 0;</span><br><span class="line">when(promise, function (value) &#123;</span><br><span class="line">    internalCounter++;</span><br><span class="line">&#125;, function (error) &#123;</span><br><span class="line">    internalCounter++;</span><br><span class="line">&#125;);</span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">    ASSERT.ok(internalCounter == 0 || internalCounter == 1);</span><br><span class="line">&#125;, forever);</span><br></pre></td></tr></table></figure>
+</li>
+<li><ol start="3">
+<li>将“解决”与“观察解决”的关注点分开。</li>
+</ol>
+</li>
+<li><p>3.1. 允许API安全地生成“延迟”，保留“解析器”部分，并将“promise”组件分发给任意数量的相互怀疑的消费者。</p>
+</li>
+<li><p>3.2. “竞争性竞争”:允许API安全地生成“延迟”，保留“承诺”部分，并将“解析器”组件分发给任何数量的相互怀疑的消费者。</p>
+</li>
+<li><ol start="4">
+<li>提供一种机制，允许承诺使用者在可疑承诺尝试多次解析的任何情况下抛出异常。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>提供对任意消息传递到承诺的支持，包括支持拦截没有显式提供处理程序的任意消息。</li>
+</ol>
+</li>
+</ul>
+<h3 id="相关讨论"><a href="#相关讨论" class="headerlink" title="相关讨论"></a>相关讨论</h3><p><strong>略</strong></p>
+<h2 id="Promises-A"><a href="#Promises-A" class="headerlink" title="Promises/A"></a>Promises/A</h2><p><a href="http://wiki.commonjs.org/wiki/Promises/A" target="_blank" rel="noopener">原文链接 - Promises/A</a></p>
+<h3 id="提议"><a href="#提议" class="headerlink" title="提议"></a>提议</h3><p><code>promise</code> 相当于单个操作完成后返回的最终的结果。<code>promise</code> 的状态可能是 <code>unfulfilled , fulfilled , failed</code>三种中的一个。</p>
+<p>它或许只能从 <code>unfulfilled</code> 状态迁移到 <code>fulfilled</code> 状态，或者从<code>unfulfilled</code>状态迁移到 <code>failed</code>状态。</p>
+<p>一旦 <code>promise</code> 处于<code>fulfilled</code> 或者 <code>failed</code> 状态，这个 <code>promise</code> 的值必须不能被修改，仅作为一个值，存在于 JavaScript 中，就像“原语”（primitives）和“对象标识”（object identities）一样，不能改变（尽管对象本身可能总是可变的，但对象标识不会。）。</p>
+<p>这中不可改变的特性于 <code>promise</code> 来说很重要，它既能避免来自监听者的副作用，监听者在其行为中能创造意想不到的变化；也允许 <code>promises</code> 被传递给其他函数而不影响其调用者，这与“原语”被传递给函数而不用担心其调用者的变量被该函数的执行改变的方式一样。</p>
+<p>这个 API 没有定义如何创建 <code>promises</code>，而仅定义了 <code>promise</code> 必须提供必要的接口，<code>promise</code> 的消费者通过它来交流信息。实现者可以自由定义如何创建 <code>promises</code>。一些 <code>promises</code> 可以提供自己的函数来实现 <code>promise</code>，而其他 <code>promises</code> 则可能通过一种对 <code>promise</code> 消费者不可见的机制来实现。请参阅[Promise Manager] API以获得有用的方便函数的建议。</p>
+<p>承诺本身也可能包括其他额外的便利方法。例如，可以在承诺(如addCallback和addBoth)上实现Dojo的延迟函数。</p>
+<p>promise被定义为一个对象，它有属性 <code>then</code>，且其值为函数 :</p>
+<p><strong>then(fulfilledHandler, errorHandler, progressHandler)</strong><br>为完成的 <code>promise</code> 添加将要被调用的 <code>fulfilledHandler</code>、<code>errorHandler</code> 和 <code>progressHandler</code> 回调函数。当 <code>promise</code> 被实现时，调用 <code>fullledhandler</code>。当 <code>promise</code> 失败时调用 <code>errorHandler</code>。<code>progressHandler</code> 用于调用进度事件。所有参数都是可选的，非函数值将被忽略。<code>progressHandler</code> 不仅是一个可选参数，而且进度事件完全是可选的。<code>Promise</code> 实现者不需要调用 <code>progressHandler</code> (progressHandler可以被忽略)，这个参数的存在使得实现者可以调用它，如果他们有进度事件要报告的话。</p>
+<p>这个函数应该返回一个新的 <code>promise</code>，这个 <code>promise</code> 将在给定的 <code>fulfilledHandler</code> 或 <code>errorHandler</code>回调函数条件下完成实现。并允许将 <code>promise</code> 通过链式操作链接在一起。回调处理程序返回的值是返回的 <code>promise</code> 的实现值。如果回调引发错误，返回的 <code>promise</code> 将被移动到failed状态。</p>
+<p>使用CommonJS兼容承诺的一个例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">asyncComputeTheAnswerToEverything().</span><br><span class="line">   then(addTwo).</span><br><span class="line">   then(printResult, onError);</span><br><span class="line"> 44</span><br></pre></td></tr></table></figure>
+
+<p>可交互的 <code>promise</code> 是一种扩展的 <code>promise</code>，支持以下附加功能：</p>
+<p><strong>get(propertyName)</strong><br>从此承诺的目标请求给定的属性。返回一个承诺，以提供来自此承诺的目标的声明属性的值。</p>
+<p><strong>call(functionName, arg1, arg2, …)</strong><br>请求在此承诺的目标上调用给定的方法/函数。返回一个承诺，以提供所请求函数调用的返回值。</p>
+<h3 id="Open-Issues"><a href="#Open-Issues" class="headerlink" title="Open Issues"></a>Open Issues</h3><p>对回调处理程序的调用应该放在事件队列中还是立即执行?-目前还不确定，我也不确定什么是最好的。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>略…</p>
+<h2 id="Promises-A-1"><a href="#Promises-A-1" class="headerlink" title="Promises/A+"></a>Promises/A+</h2><p><a href="https://promisesaplus.com" target="_blank" rel="noopener">原文链接</a></p>
+<p>一个开放的标准，为可交互的 Javascript promises 而发声。                    —— 实现者，为实现者</p>
+<p><code>promise</code> 表示异步操作的最终结果。与 <code>promise</code> 交互的主要方式是通过其 <code>then</code> 方法，该方法注册回调以接收承诺的最终值或无法实现承诺的原因。</p>
+<p>该规范详细描述了then方法的行为，提供了一个可互操作的基础，所有承诺/A+符合约定的承诺实现都可以依赖于该基础来提供。因此，应该认为该规范非常稳定。虽然 <code>promise /A+</code> 组织可能偶尔会修改这个规范，进行少量向后兼容的更改来处理新发现的角用例，但是只有在仔细考虑、讨论和测试之后，我们才会集成大型的或向后不兼容的更改。</p>
+<p>从历史上看，<code>promise /A+</code> 阐明了早期<a href="http://wiki.commonjs.org/wiki/Promises/A" target="_blank" rel="noopener">promise /A proposal</a>的行为条款，将其扩展到涵盖事实行为，并省略了未指定或有问题的部分。</p>
+<p>最后，核心 <code>promist/A+</code> 规范不处理如何创建、实现或拒绝承诺，而是选择专注于提供一个互操作的then方法。将来在配套规范中的工作可能会涉及这些主题。</p>
+<h3 id="1-术语"><a href="#1-术语" class="headerlink" title="1. 术语"></a>1. 术语</h3><p>1.1. “promise” 是一个带有 <code>then</code> 方法的对象或者函数，它的行为遵从改规范<br>1.2. “thenable” 是一个定义 <code>then</code> 方法的对象或者函数<br>1.3. “value” 是一个任意 Javascript 法定的值（包括 <code>undefined</code>, <code>thenable</code>, <code>promise</code>）
+1.4. “exception” 是一个使用 <code>throw</code> 声明抛出的值<br>1.5. “reason” 是一个表示 <code>promise</code> 被拒绝的原因的值</p>
+<h3 id="2-需求"><a href="#2-需求" class="headerlink" title="2. 需求"></a>2. 需求</h3><h4 id="2-1-Promise-状态"><a href="#2-1-Promise-状态" class="headerlink" title="2.1. Promise 状态"></a>2.1. Promise 状态</h4><p>一个 <code>promise</code> 必须处于以下三种状态中的一种：<code>pending</code>, <code>fulfilled</code>, <code>rejected</code></p>
+<p>2.1.1. <code>pending</code> 状态时，<code>promise</code>：</p>
+<ul>
+<li>2.1.1.1. 可能转变为 <code>fulfilled</code> 或者 <code>rejected</code> 状态</li>
+</ul>
+<p>2.1.2. <code>fulfilled</code> 状态时，<code>promise</code>：</p>
+<ul>
+<li>2.1.2.1. 绝不能再转变为其他任何状态</li>
+<li>2.1.2.2. 必须有 <code>value</code>，且不可改变</li>
+</ul>
+<p>2.1.3. <code>rejected</code> 状态时，<code>promise</code>:</p>
+<ul>
+<li>2.1.3.1. 绝不能再转变为其他任何状态</li>
+<li>2.1.3.2. 必须有 <code>reason</code>, 且不可改变</li>
+</ul>
+<p>这儿，“不可改变” 意思是不变的身份（即：<code>===</code>）, 但并不意味着深层次的不变性</p>
+<h4 id="2-2-then-方法"><a href="#2-2-then-方法" class="headerlink" title="2.2. then 方法"></a>2.2. <code>then</code> 方法</h4><p><code>promise</code> 必须提供 <code>then</code> 方法来访问当前或最终的 <code>value</code> 或者 <code>reason</code> </p>
+<p><code>promise</code> 的 <code>then</code> 方法接受两个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onFulfilled, onRejected)</span><br></pre></td></tr></table></figure>
+
+<p>2.2.1. <code>onFulfilled</code> 和 <code>onRejected</code> 都是可选参数：</p>
+<ul>
+<li>2.2.1.1. 如果 <code>onFulfilled</code> 不是函数，则必须忽略</li>
+<li>2.2.1.2. 如果 <code>onRejected</code> 不是函数，则必须忽略</li>
+</ul>
+<p>2.2.2. 如果 <code>onFulfilled</code> 是函数：</p>
+<ul>
+<li>2.2.2.1 它必须在 <code>promise</code> 实现之后被调用，把 <code>promise</code> 的 <code>value</code> 作为其第一个参数</li>
+<li>2.2.2.2. 它绝不能在 <code>promise</code> 实现之前被调用</li>
+<li>2.2.2.3. 它绝不能调用多次</li>
+</ul>
+<p>2.2.3. 如果 <code>onRejected</code> 是函数：</p>
+<ul>
+<li>2.2.3.1. 它必须在 <code>promise</code> 拒绝之后被调用，把 <code>promise</code> 的 <code>reason</code> 作为其第一个参数</li>
+<li>2.2.3.2. 它绝不能在 <code>promise</code> 拒绝之前被调用</li>
+<li>2.2.3.3.  它绝不能调用多次</li>
+</ul>
+<p>2.2.4. 在上下文堆栈中只包含<strong>平台代码</strong>之前，绝不能调用 <code>onFulfilled</code> 或 <code>onRejected</code> [3.1]</p>
+<p>2.2.5. <code>onFulfilled</code> 或 <code>onRejected</code> 只能作为函数被调用。[3.2]</p>
+<p>2.2.6. <code>then</code> 可能被同一个 <code>promise</code> 多次调用。</p>
+<ul>
+<li>2.2.6.1. 如果/当 <code>promise</code> 是完成的，所有各自的 <code>onFulfilled</code> 回调必须按照初始调用 <code>then</code> 的顺序执行。</li>
+<li>2.2.6.2. 如果/当 <code>promise</code> 是拒绝的，所有各自的 <code>onRejected</code> 回调必须按照初始调用 <code>then</code> 的顺序执行。</li>
+</ul>
+<p>2.2.7. <code>then</code> 必须返回一个 <code>promise</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise2 = promise1.then(onFulfilled, onRejected);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2.2.7.1. 如果 <code>onFulfilled</code> 或者 <code>onRejected</code> 返回的 <code>value</code> 为 <code>x</code>，则运行 <code>Promise</code> 决议子程序 <code>[[Resolve]](promise2, x)</code>。</li>
+<li>2.2.7.2. 如果 <code>onFulfilled</code> 或者 <code>onRejected</code> 抛出一个异常 <code>e</code>, <code>promise2</code> 必须把 <code>e</code> 作为 <code>reason</code> 进行拒绝。</li>
+<li>2.2.7.3. 如果 <code>onFulfilled</code> 不是函数，并且 <code>promise1</code> 已经完成，<code>promise2</code> 必须以与 <code>promise1</code> 相同的 <code>value</code> 来完成</li>
+<li>2.2.7.4. 如果 <code>onRejected</code> 不是函数，并且 <code>promise1</code> 已经拒绝，<code>promise2</code> 必须以与 <code>promise1</code> 相同的 <code>reason</code> 来拒绝</li>
+</ul>
+<h4 id="2-3-Promise-Resolution-子程序"><a href="#2-3-Promise-Resolution-子程序" class="headerlink" title="2.3. Promise Resolution 子程序"></a>2.3. Promise Resolution 子程序</h4><p>Promise Resolution 子程序是以 <code>promise</code> 和 <code>value</code> 为输入的抽象操作，表示为：<code>[[Resolve]](promise, x)</code>。如果 <code>x</code> 是 <code>thenable</code>，它企图使 <code>promise</code> 采用 <code>x</code> 的状态，在这一假定下，<code>x</code> 行为至少有点像 <code>promise</code>。否则，它将用 <code>x</code> 作为 <code>value</code> 来完成 <code>promise</code>。</p>
+<p><code>thenables</code> 的这种处理运行 <code>promise</code> 实现互操作，只要他们公开 <code>Promise/A+</code> 兼容的 <code>then</code> 方法。它也允许 <code>Promise/A+</code> 实现使用合理的 <code>then</code> 方法“吸收”不一致的实现。</p>
+<p>运行 <code>[[Resolve]](promise, x)</code>，执行以下步骤：</p>
+<p>2.3.1. 如果 <code>promise</code> 和 <code>x</code> 指向同一个对象，则以 <code>TypeError</code> 为由拒绝 <code>promise</code></p>
+<p>2.3.2. 如果 <code>x</code> 是一个 <code>promise</code>, 则采用它的状态 [3.4]：</p>
+<ul>
+<li>2.3.2.1. 如果 <code>x</code> 状态为 <code>pending</code>，<code>promise</code> 必须保持 <code>pending</code>  状态，直到 <code>x</code> 被完成或者拒绝。</li>
+<li>2.3.2.2. 如果/当 <code>x</code> 被完成，则用相同的 <code>value</code> 完成 <code>promise</code></li>
+<li>2.3.2.3. 如果/当 <code>x</code> 被拒绝，则用相同的 <code>reason</code> 拒绝 <code>promise</code></li>
+</ul>
+<p>2.3.3. 否则，如果 <code>x</code> 是一个对象或者函数，</p>
+<ul>
+<li>2.3.3.1. 让 <code>then</code> 为 <code>x.then</code>. [3.5]</li>
+<li>2.3.3.2. 如果检索属性 <code>x.then</code> 导致抛出异常 <code>e</code>，则以 <code>e</code> 为由拒绝 <code>promise</code></li>
+<li>2.3.3.3. 如果 <code>then</code> 是函数，用 x 做上下文 <code>this</code>,  <code>resolvePromise</code> 做第一个参数，<code>rejectPromise</code> 做第二个参数来执行它，这儿：<ul>
+<li>2.3.3.3.1. 如果/当 <code>resolvePromise</code> 被调用时，它的 <code>value</code> 是 <code>y</code>，运行 <code>[[Resolve]](promise, y)</code>.</li>
+<li>2.3.3.3.2. 如果/当 <code>rejectPromise</code> 被调用时，它的 <code>reason</code> 时 <code>r</code>，则以 <code>r</code> 理由拒绝 <code>promise</code>.</li>
+<li>2.3.3.3.3. 如果同时调用resolvePromise和rejectPromise，或者对同一个参数进行多个调用，那么第一个调用优先，任何进一步的调用都被忽略。</li>
+<li>2.3.3.3.4. 如果调用 <code>then</code> 抛出异常 <code>e</code>,<ul>
+<li>2.3.3.3.4.1. 如果 <code>resolvePromise</code> 和 <code>rejectPromise</code> 都被调用，则忽略。</li>
+<li>2.3.3.3.4.2. 否则以 <code>e</code> 为理由拒绝 <code>promise</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.3.3.4. 如果<code>then</code> 不是函数，用 <code>x</code> 完成 <code>promise</code>.</li>
+</ul>
+<p>2.3.4. 如果 <code>x</code> 不是对象或者函数，则用 <code>x</code> 完成 <code>promise</code></p>
+<p>如果 <code>promise</code>以参与循环的 thenable 链作为 <code>value</code> 来完成，使得 <code>[[Resolve]](promise, thenable)</code> 的递归性质最终导致再次调用 <code>[[Resolve]](promise, thenable)</code>，那么按照上面的算法将导致无限递归。我们鼓励实现(但不是必需的)检测这种递归并拒绝承诺，理由是信息类型错误。[3.6]</p>
+<h4 id="3-备注"><a href="#3-备注" class="headerlink" title="3. 备注"></a>3. 备注</h4><p>3.1. 这儿所说的“平台代码”是指引擎、环境、和 <code>promise</code> 的代码实现。在实践中，这个需求确保 <code>onFulfilled</code> 和 <code>onRejected</code> 在调用 <code>then</code> 的事件循环之后异步执行，和一个新的栈。这可以通过“宏任务”机制(如setTimeout或setimmediation)实现，也可以通过“微任务”机制(如MutationObserver或process.nextTick)实现。由于 <code>promise</code> 实现被认为是平台代码，所以它本身可能包含一个任务调度队列或“蹦床”，在其中调用处理程序。</p>
+<p>3.2. 也就是说，在严格模式下，这在它们内部是没有定义的;在非严格模式下，它将是全局对象。</p>
+<p>3.3. 实现可能允许 <code>promise2 === promise1</code>，前提是实现满足所有需求。每个实现都应该记录它是否可以生成 <code>promise2 === promise1</code>，以及在什么条件下生成。</p>
+<p>3.4. 通常，只有当 <code>x</code> 来自当前实现时才知道它是一个真正的 <code>promise</code>。此子句允许使用特定于实现的方法来采用已知一致性 promises 的状态。</p>
+<p>3.5. 这个过程首先存储对AA的引用，然后测试该引用，然后调用该引用，从而避免了对AA属性的多次访问。这些预防措施对于确保访问器属性的一致性非常重要，因为访问器属性的值在检索之间可能会发生变化。</p>
+<p>3.6. 实现不应该对 thenable 链的深度设置任意的限制，并且假设超过这个任意的限制，递归将是无限的。只有真正的死循环才会导致 <code>TypeError</code>; 如果遇到一个由不同 thenable 组成的无限链，则永远递归是正确的行为。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/sworlife/sworlife.github.io" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 swor<br></p>
+                <!-- <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p> -->
+                <!-- <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p> -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
