@@ -1,8 +1,8 @@
 ---
 title: 无 new 操作符构造对象
+date: 2019/7/14 10:00:00
 tags: javaScript
 categories: 前端技术
-date: 2019/7/16 10:00:00
 comments: true
 ---
 
