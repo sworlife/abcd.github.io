@@ -23,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="墨鱼">
+        <meta property="og:title" content="浏览器DNS查询">
     
 
     <!--Open Graph Description-->
@@ -36,7 +36,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -55,7 +55,7 @@
 
     <!-- Title -->
     
-    <title>存档：2019/7 - 墨鱼</title>
+    <title>浏览器DNS查询 - 墨鱼</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -157,166 +157,86 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/images/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2019/7</h1>
+                <div class="post-heading">
+                    <h1>浏览器DNS查询</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-07-15
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/浏览器/">#浏览器</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/前端技术/">前端技术</a>
+
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2019/07/15/浏览器DNS查询/">
-        <h1 class="post-title archive">
-            浏览器DNS查询
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-15
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2019/07/15/https-gist-github-com-被墙如何解决/">
-        <h1 class="post-title archive">
-            https://gist.github.com 被墙如何解决
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-15
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><a name="f1c52a7d"></a></p>
+<h2 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2><p>浏览器缓存的域名是有限制的，不仅浏览器缓存大小有限制，而且缓存时间也有限制，通常情况为2-30分钟不等，域名被缓存的时间限制可以通过 TTL 属性来设置。<br>浏览器检查缓存中是否存在该域名的 IP 地址，如果存在，解析过程结束。</p>
+<p><a name="f6ed12db"></a></p>
+<h2 id="操作系统缓存"><a href="#操作系统缓存" class="headerlink" title="操作系统缓存"></a>操作系统缓存</h2><p>如果浏览器缓存中解析失败，则会将查询任务交给操作系统。操作系统优先查询缓存中是否存在，如存在解析结束，若不存在，则读取配置文件（在 Windows 中配置文件：C:\Windows\System32\drivers\etc\hosts ，在 Linux 中配置文件 /etc/named.conf ），如存在解析结束。<br>操作系统会缓存从配置文件中解析的结果，缓存的时间同样受这个域名的失效时间和缓存的空间大小控制。<br><br><br>操作系统中配置文件可以将任何域名解析到任何能够访问的 IP 地址。例如，我们在测试时可以将一个域名解析到一台测试服务器上，这样不用修改任何代码就能测试到单独服务器上的代码。也因为有这种本地 DNS 解析的规程，所有黑客能通过修改本地域名解析来实现<strong>域名劫持</strong>。</p>
+<p><a name="86b77405"></a></p>
+<h2 id="路由器缓存"><a href="#路由器缓存" class="headerlink" title="路由器缓存"></a>路由器缓存</h2><p>如果操作系统在操作系统缓存及配置文件中都解析失败，则会将域名发送至 LDNS （本地区域名服务器，该地址就是网络配置中的 DNS 服务器地址）。LDNS 会缓存域名解析结果，结果在缓存中存在则解析结束<br></p>
+<p><a name="70d5c136"></a></p>
+<h2 id="ISP-DNS-缓存"><a href="#ISP-DNS-缓存" class="headerlink" title="ISP DNS 缓存"></a>ISP DNS 缓存</h2><p>如果 LDNS 解析失败，LDNS 则会向根服务器发起解析请求，返回顶级国际域名服务器解析地址，然后向顶级域名服务器地址发起解析请求，返回域名服务商的解析地址，然后再向域名服务商请求解析，得到对应的 IP，告知浏览器</p>
+<p><img src="/.ltd//lc.svg" alt="浏览器DNS解析流程图解"></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2019/07/14/How Browsers Work/">
-        <h1 class="post-title archive">
-            How Browsers Work
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
             
-                <div class="post-preview">
-    <a href="/2019/07/14/Promises-A-规范/">
-        <h1 class="post-title archive">
-            Promises/A+ 规范
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/07/14/布局方案汇总/">
-        <h1 class="post-title archive">
-            布局方案汇总
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/07/14/git-commit-规范工具的应用/">
-        <h1 class="post-title archive">
-            git commit 规范工具的应用
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/07/14/node-sass-安装失败解决方案/">
-        <h1 class="post-title archive">
-            node-sass 安装失败解决方案
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/07/14/brew-安装爬坑指南/">
-        <h1 class="post-title archive">
-            brew 安装爬坑指南
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/07/14/定制个性化终端/">
-        <h1 class="post-title archive">
-            定制个性化终端
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2019/07/14/无-new-操作符构造对象/">
-        <h1 class="post-title archive">
-            无 new 操作符构造对象
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
