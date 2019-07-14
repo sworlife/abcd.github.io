@@ -8,14 +8,14 @@ subtitle:  #世号墨鱼为乌贼，何为独得贼名？盖其腹中之墨，�
 description: 前端开发相关技术博文
 keywords: 前端开发 react vue 小程序 JavaScript 计算机基础
 author: swor
-language: zh-cn
+language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://moyu.ltd
+url: http://moyu.ltd/
 root: /
-permalink: :category/:title
+permalink: :year/:month/:day/:title/
 permalink_defaults: 
 
 # Directory
@@ -29,20 +29,21 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
-default_layout: post
-titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
-filename_case: 0
-render_drafts: false
-post_asset_folder: false
-relative_link: false
-future: true
-highlight:
+new_post_name: :title.md # 新文章的文件名称
+default_layout: post # 预设布局
+auto_spacing: true # 在中文和英文之间加入空格
+titlecase: false # 把标题转换为 title case
+external_link: true # 在新标签中打开链接
+filename_case: 0 # 把文件名称转换为 (1) 小写或 (2) 大写
+render_drafts: false # 显示草稿
+post_asset_folder: false # 启动 Asset 文件夹
+relative_link: false # 把链接改为与根目录的相对位址
+future: true # 显示未来的文章
+highlight: # 代码块的设置
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
+  tab_replace: 2
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -73,7 +74,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: swor
+theme: clean-blog
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
