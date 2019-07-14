@@ -23,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="墨鱼">
+        <meta property="og:title" content="brew 安装爬坑指南">
     
 
     <!--Open Graph Description-->
@@ -36,7 +36,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -55,7 +55,7 @@
 
     <!-- Title -->
     
-    <title>前端技术 - 墨鱼</title>
+    <title>brew 安装爬坑指南 - 墨鱼</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -157,62 +157,71 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/images/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>前端技术</h1>
+                <div class="post-heading">
+                    <h1>brew 安装爬坑指南</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-07-14
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2019/07/14/定制个性化终端/">
-        <h1 class="post-title archive">
-            定制个性化终端
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">Homebrew 官网</a></p>
+<p>安装命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>安装过程很慢，请自备梯子。</p>
+<p>好不容易等完进度条，却报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Homebrew install: Failed during: git fetch origin master:refs/remotes/origin/master -n --depth=1</span><br></pre></td></tr></table></figure>
+
+<p>解决方案：<a href="https://stackoverflow.com/questions/39836190/homebrew-install-failed-during-git-fetch-origin-masterrefs-remotes-origin-mas" target="_blank" rel="noopener">stackoverflow</a></p>
+<p><img src="https://user-images.githubusercontent.com/33422051/59659335-93ca8f80-91d8-11e9-8b8e-34fe35193337.jpg" alt="20190412_stackoverflow"></p>
+<blockquote>
+<p>注意事项: 因为之前安装过一次，所以 /usr/local 目录下会创建 Cellar 和 Homebrew 。但重新安装的时候，如果检测到 Cellar 和 Homebrew 中某些文件已存在，仍然会安装失败。因此，需要移除这些目录（如果因权限问题，无法删除目录，可以删除目录里所有文件）</p>
+</blockquote>
+
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2019/07/14/无-new-操作符构造对象/">
-        <h1 class="post-title archive">
-            无 new 操作符构造对象
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2019-07-14
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
