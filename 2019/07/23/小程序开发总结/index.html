@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="小程序运行环境   运行环境 逻辑层 渲染层    iOS JavaScriptCore WKWebView   安卓 V8 chromium定制内核   小程序开发者工具 NWJS Chrome WebView   需要注意到，小程序运行的三个环境，其底层 执行 JavaScript 与 渲染标记（DOM） 的引擎都不一样。具体那些地方不一样，现在或者将来或许我们都不能仔细去比对，能做的或许就是">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发总结">
+<meta property="og:url" content="/2019/07/23/小程序开发总结/index.html">
+<meta property="og:site_name" content="墨鱼">
+<meta property="og:description" content="小程序运行环境   运行环境 逻辑层 渲染层    iOS JavaScriptCore WKWebView   安卓 V8 chromium定制内核   小程序开发者工具 NWJS Chrome WebView   需要注意到，小程序运行的三个环境，其底层 执行 JavaScript 与 渲染标记（DOM） 的引擎都不一样。具体那些地方不一样，现在或者将来或许我们都不能仔细去比对，能做的或许就是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/2019/07/23/小程序开发总结/03.png">
+<meta property="og:image" content="/2019/07/23/小程序开发总结/04.png">
+<meta property="og:image" content="/2019/07/23/小程序开发总结/05.png">
+<meta property="og:image" content="/2019/07/23/小程序开发总结/06.png">
+<meta property="og:updated_time" content="2019-07-23T01:50:05.933Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序开发总结">
+<meta name="twitter:description" content="小程序运行环境   运行环境 逻辑层 渲染层    iOS JavaScriptCore WKWebView   安卓 V8 chromium定制内核   小程序开发者工具 NWJS Chrome WebView   需要注意到，小程序运行的三个环境，其底层 执行 JavaScript 与 渲染标记（DOM） 的引擎都不一样。具体那些地方不一样，现在或者将来或许我们都不能仔细去比对，能做的或许就是">
+<meta name="twitter:image" content="/2019/07/23/小程序开发总结/03.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="/2019/07/23/小程序开发总结/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>微信小程序开发总结 | 墨鱼</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">墨鱼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2019/07/23/小程序开发总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="swor">
+      <meta itemprop="description" content="前端开发相关技术博文">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="墨鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信小程序开发总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-23 09:50:00 / 修改时间：09:50:05" itemprop="dateCreated datePublished" datetime="2019-07-23T09:50:00+08:00">2019-07-23</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端技术/" itemprop="url" rel="index"><span itemprop="name">前端技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="小程序运行环境"><a href="#小程序运行环境" class="headerlink" title="小程序运行环境"></a>小程序运行环境</h3><table>
+<thead>
+<tr>
+<th>运行环境</th>
+<th>逻辑层</th>
+<th>渲染层</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iOS</td>
+<td>JavaScriptCore</td>
+<td>WKWebView</td>
+</tr>
+<tr>
+<td>安卓</td>
+<td>V8</td>
+<td>chromium定制内核</td>
+</tr>
+<tr>
+<td>小程序开发者工具</td>
+<td>NWJS</td>
+<td>Chrome WebView</td>
+</tr>
+</tbody></table>
+<p>需要注意到，小程序运行的三个环境，其底层 <strong>执行 JavaScript</strong> 与 <strong>渲染标记（DOM）</strong> 的引擎都不一样。具体那些地方不一样，现在或者将来或许我们都不能仔细去比对，能做的或许就是在实际开发中进行测试。</p>
+<h3 id="小程序宿主环境"><a href="#小程序宿主环境" class="headerlink" title="小程序宿主环境"></a>小程序宿主环境</h3><p>就像网页开发，js 脚本的宿主环境是浏览器一样，小程序的宿主环境就是微信客户端，因此小程序可以调用微信提供的能力，这类似于微信发布的网页开发工具包 <code>JS-SDK</code>，使得网页开发也能使用微信的能力。</p>
+<h4 id="通信模型"><a href="#通信模型" class="headerlink" title="通信模型"></a>通信模型</h4><p>小程序有两种线程，一种是 WebView 线程，负责界面的渲染，一种是 JsCore 线程，负责执行 js 脚本。而一个小程序示例会存在多个界面，因此存在多个 WebView 线程。</p>
+<p>这两种线程的通信由微信客户端（Native）做中转，逻辑层发送网络请求也经由Native转发，小程序的通信模型下图所示。</p>
+
+
+<h4 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h4><p>小程序通过 <code>app.json</code> 来配置页面：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"pages"</span>:[</span><br><span class="line">    <span class="string">"pages/index/index"</span>,</span><br><span class="line">    <span class="string">"pages/logs/logs"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>pages 数组中第一个默认为小程序首页。</p>
+<p>小程序在微信中初始化完成后调用 <code>onLaunch</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 小程序启动之后 触发</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>启动小程序过程如图：</p>
+
+
+<p>小程序只有一个 app 实例，由所以页面共享，因此 app 中的配置同时作用于所有页面，例如：自定义组件，样式等。</p>
+<h4 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h4><p>小程序由多个页面组成，页面通过构造函数 <code>Page</code> 来注册页面：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123; <span class="comment">// 参与页面渲染的数据</span></span><br><span class="line">    logs: []</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 页面渲染后 执行</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>一个页面由多个组件构成（类似于 html 标签，但是还是统一称作组件），组件的使用于 html 标签使用大体一致。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>API 提供的就是微信的能力，例如获取用户信息、微信支付等等，API 大多是异步，因此处理异步问题在小程序中很常见。</p>
+<h3 id="小程序代码构成"><a href="#小程序代码构成" class="headerlink" title="小程序代码构成"></a>小程序代码构成</h3><p>小程序项目文件类型有多达五种：<code>.wxml .wxss .json .js .wxs</code>。</p>
+<ul>
+<li><code>.wxml</code> 提供结构（html）</li>
+<li><code>.wxss</code> 提供样式（css）</li>
+<li><code>.json</code> 提供配置</li>
+<li><code>.js</code> 提供交互逻辑</li>
+<li><code>.wxs</code> js 脚本，可通过 <code>&lt;wxs&gt;</code> 组件引入，类似 <code>&lt;script&gt;</code> 标签</li>
+</ul>
+<p>而一个页面或者自定义组件均由以上 5 中文件组成。根据实际情况 <code>.wxss .json .wxs</code> 可不用。 </p>
+<h3 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h3><p>我们知道，网页开发的交互逻辑都是通过 <code>JavaScript</code> 来操作 <code>DOM</code> 来完成；但小程序 <code>JavaScript</code> 脚本运行在 <code>JavaScriptCore</code>（IOS） 或 <code>JsCore</code>（安卓） 中，它们是不包含 <code>BOM</code> 和 <code>DOM</code> 对象的，因此小程序是不能像网页开发一样，直接操作 <code>DOM</code> 节点，这将带来诸多限制。</p>
+<p>那我们要如何更新 UI 呢？这就需要理解<strong>数据驱动</strong>的概念，当前 <code>React Vue</code> 等框架均是采用这种方式来实现 <code>UI</code> 与数据的绑定，通过 <code>JavaScript</code> 来改变数据从而更新 <code>UI</code>。</p>
+<p>WXML结构实际上等价于一棵Dom树，通过一个JS对象也可以来表达Dom树的结构，如图：</p>
+<img src="/2019/07/23/小程序开发总结/03.png" title="WXML结构和JS对象均可以表示一棵Dom树">
+
+<p>WXML可以先转成JS对象，然后再渲染出真正的Dom树，回到“Hello World”那个例子，我们可以看到转换的过程如图:</p>
+<img src="/2019/07/23/小程序开发总结/04.png" title="WXML结构转JS对象，再转Dom树">
+
+<p>这时，如果 <code>JavaScript</code> 将 WXML 的 JS 对象改变了，则：</p>
+<img src="/2019/07/23/小程序开发总结/05.png" title="状态更新的时候，通过对比前后JS对象变化，进而改变视图层的Dom树">
+
+<p>这就是数据驱动UI，因此，小程序的界面渲染如图：</p>
+<img src="/2019/07/23/小程序开发总结/06.png" title="逻辑层传递数据到渲染层">
+
+<h3 id="数据传递"><a href="#数据传递" class="headerlink" title="数据传递"></a>数据传递</h3><h4 id="页面与页面的数据传递"><a href="#页面与页面的数据传递" class="headerlink" title="页面与页面的数据传递"></a>页面与页面的数据传递</h4><ul>
+<li>app 实例<br>通过 <code>getApp()</code> 全局接口，可以在小程序初始化后任何地方获取小程序实例的引用。通过操作 <code>app</code> 实例的属性做到页面与页面之间的数据共享。</li>
+</ul>
+<p>适合一些不需要缓存的，一次性的状态数据。</p>
+<ul>
+<li><p>本地缓存<br>通过 <code>wx.setStorage/wx.getStroage</code> 来操作需要缓存的数据，实现页面与页面之间的数据共享。</p>
+</li>
+<li><p>服务器存储<br>通过调用后端接口来实现对用户配置或状态的数据进行存储，实现页面与页面之间的数据共享。</p>
+</li>
+</ul>
+<p>适合同一用户跨平台、跨终端的数据共享</p>
+<h4 id="页面与组件"><a href="#页面与组件" class="headerlink" title="页面与组件"></a>页面与组件</h4><p>通过 <code>setData</code> 和 模版数据绑定（数据驱动概念）来实现数据传递</p>
+<h4 id="组件与组件"><a href="#组件与组件" class="headerlink" title="组件与组件"></a>组件与组件</h4><ul>
+<li>父组件 -&gt; 子组件：属性</li>
+<li>子组件 -&gt; 父组件：事件</li>
+</ul>
+<h3 id="允许传递的数据类型"><a href="#允许传递的数据类型" class="headerlink" title="允许传递的数据类型"></a>允许传递的数据类型</h3><p>因为小程序使用了模版，限于 <code>JSON</code> 字符串化规则，数据中不能包含 <code>function symbol</code> 以及循环引用。</p>
+<blockquote>
+<p>TIP: 通过抽象节点节点的方式，可像自定义组件中传递一个组件。</p>
+</blockquote>
+<h3 id="与-React-的差异"><a href="#与-React-的差异" class="headerlink" title="与 React 的差异"></a>与 React 的差异</h3><p>个人决定小程序与React本质上都是已组件化的思想来组织代码，从而构建易维护、可重用的代码；都采用了 diff 算法来优化 DOM 渲染性能。但因小程序使用模版引擎，React使用JSX语法，</p>
+<ul>
+<li>小程序组件通信上有组多限制，例如：无法传递函数，无法直接传递组件，没有高阶组件，模版中循环，if 判断不如 js 优雅等。但模版引擎的有点在于可以通过一些特定的指令（例如: bind:tap catch:tap capture-bind:tap）可帮助开发人员快速开发。</li>
+<li>React 通过JSX，DOM 结构直接表示为 JS 对象，因此 React 能够利用js语言的各种能力，几乎没有限制。但没有限制带来了强大能力的同时也带来了开发者架构负担。</li>
+</ul>
+<h3 id="小程序开发过程中遇到的问题"><a href="#小程序开发过程中遇到的问题" class="headerlink" title="小程序开发过程中遇到的问题"></a>小程序开发过程中遇到的问题</h3><ul>
+<li>社区生态目前还太弱小，基本都要自己造轮子</li>
+<li>小程序是否分包需要在一开始构建目录时就确定好，因为分包不是按配置，而是按目录，不智能</li>
+<li>小程序是双线程工作，因此需要处理异步问题，但其本身虽然支持了 es6 语法，但不能成功编译成 es5,例如： async wait。需要自己解决</li>
+<li>小程序使用了一部分原生组件，但当原生组件与非原生组件都绑定事件时，从原生组件冒泡到非原生组件在真机上的路径不确定，每次不一致</li>
+<li>小程序事件通过DOM传递的数据存在大小写问题（如果命名包含了大写，事件对象中都是小写）</li>
+<li>小程序文件上传其实是图片上传，参数 Header 配置的 content-type ，是无法成为后端接口请求的 content-type，实际上，后端接口的 header 可能是微信固定配置的 ‘image/jpg’</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/微信小程序/" rel="tag"># 微信小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/15/浏览器DNS查询/" rel="next" title="浏览器DNS查询">
+                <i class="fa fa-chevron-left"></i> 浏览器DNS查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">swor</p>
+  <div class="site-description motion-element" itemprop="description">前端开发相关技术博文</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序运行环境"><span class="nav-number">1.</span> <span class="nav-text">小程序运行环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序宿主环境"><span class="nav-number">2.</span> <span class="nav-text">小程序宿主环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通信模型"><span class="nav-number">2.1.</span> <span class="nav-text">通信模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序"><span class="nav-number">2.2.</span> <span class="nav-text">程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面"><span class="nav-number">2.3.</span> <span class="nav-text">页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件"><span class="nav-number">2.4.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">2.5.</span> <span class="nav-text">API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序代码构成"><span class="nav-number">3.</span> <span class="nav-text">小程序代码构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据驱动"><span class="nav-number">4.</span> <span class="nav-text">数据驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据传递"><span class="nav-number">5.</span> <span class="nav-text">数据传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面与页面的数据传递"><span class="nav-number">5.1.</span> <span class="nav-text">页面与页面的数据传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面与组件"><span class="nav-number">5.2.</span> <span class="nav-text">页面与组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件与组件"><span class="nav-number">5.3.</span> <span class="nav-text">组件与组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#允许传递的数据类型"><span class="nav-number">6.</span> <span class="nav-text">允许传递的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与-React-的差异"><span class="nav-number">7.</span> <span class="nav-text">与 React 的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序开发过程中遇到的问题"><span class="nav-number">8.</span> <span class="nav-text">小程序开发过程中遇到的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">swor</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
