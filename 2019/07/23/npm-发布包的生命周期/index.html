@@ -93,18 +93,18 @@
   };
 </script>
 
-  <meta name="description" content="前言被墙往往有两种级别（封域名、封IP），很幸运 https://gist.github.com 是封域名级别的。因此，我们才有可能通过修改本地 hosts 文件，来避免通过网关来进行域名解析，直接从本地获取 IP 地址进行访问。其技术原理可参加浏览器DNS查询流程 修改 hosts 文件 获取 https://gist.github.com 的IP地址这个很不好意思说: 百度吧! IP: 192">
-<meta name="keywords" content="开发工具">
+  <meta name="description" content="发布npm publish 用来发布包，发布时读取的配置是 package.json 文件，比如：name 为包名字，version 为版本号。 更新npm publish 同时也用来更新包，但一定要更改 package.json 的 version 字段 停更或撤销有时候我们会觉得这个包功能已经完善了，或者我放弃了，再或者我没有精力继续了等，可以使用 npm deprecate &amp;lt;pkg&amp;">
+<meta name="keywords" content="工程化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="https:&#x2F;&#x2F;gist.github.com 被墙如何解决">
-<meta property="og:url" content="/2019/07/15/https-gist-github-com-被墙如何解决/index.html">
+<meta property="og:title" content="npm 发布包的生命周期">
+<meta property="og:url" content="/2019/07/23/npm-发布包的生命周期/index.html">
 <meta property="og:site_name" content="墨鱼">
-<meta property="og:description" content="前言被墙往往有两种级别（封域名、封IP），很幸运 https://gist.github.com 是封域名级别的。因此，我们才有可能通过修改本地 hosts 文件，来避免通过网关来进行域名解析，直接从本地获取 IP 地址进行访问。其技术原理可参加浏览器DNS查询流程 修改 hosts 文件 获取 https://gist.github.com 的IP地址这个很不好意思说: 百度吧! IP: 192">
+<meta property="og:description" content="发布npm publish 用来发布包，发布时读取的配置是 package.json 文件，比如：name 为包名字，version 为版本号。 更新npm publish 同时也用来更新包，但一定要更改 package.json 的 version 字段 停更或撤销有时候我们会觉得这个包功能已经完善了，或者我放弃了，再或者我没有精力继续了等，可以使用 npm deprecate &amp;lt;pkg&amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-14T22:57:19.452Z">
+<meta property="og:updated_time" content="2019-07-23T03:22:05.083Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="https:&#x2F;&#x2F;gist.github.com 被墙如何解决">
-<meta name="twitter:description" content="前言被墙往往有两种级别（封域名、封IP），很幸运 https://gist.github.com 是封域名级别的。因此，我们才有可能通过修改本地 hosts 文件，来避免通过网关来进行域名解析，直接从本地获取 IP 地址进行访问。其技术原理可参加浏览器DNS查询流程 修改 hosts 文件 获取 https://gist.github.com 的IP地址这个很不好意思说: 百度吧! IP: 192">
+<meta name="twitter:title" content="npm 发布包的生命周期">
+<meta name="twitter:description" content="发布npm publish 用来发布包，发布时读取的配置是 package.json 文件，比如：name 为包名字，version 为版本号。 更新npm publish 同时也用来更新包，但一定要更改 package.json 的 version 字段 停更或撤销有时候我们会觉得这个包功能已经完善了，或者我放弃了，再或者我没有精力继续了等，可以使用 npm deprecate &amp;lt;pkg&amp;">
 
 
 
@@ -112,7 +112,7 @@
 
   
   
-  <link rel="canonical" href="/2019/07/15/https-gist-github-com-被墙如何解决/">
+  <link rel="canonical" href="/2019/07/23/npm-发布包的生命周期/">
 
 
 
@@ -123,7 +123,7 @@
 </script>
 
   
-  <title>https://gist.github.com 被墙如何解决 | 墨鱼</title>
+  <title>npm 发布包的生命周期 | 墨鱼</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2019/07/15/https-gist-github-com-被墙如何解决/">
+    <link itemprop="mainEntityOfPage" href="/2019/07/23/npm-发布包的生命周期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="swor">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">https://gist.github.com 被墙如何解决
+          <h1 class="post-title" itemprop="name headline">npm 发布包的生命周期
 
               
             
@@ -325,7 +325,7 @@
                 
               
 
-              <time title="创建时间：2019-07-15 06:31:29 / 修改时间：06:57:19" itemprop="dateCreated datePublished" datetime="2019-07-15T06:31:29+08:00">2019-07-15</time>
+              <time title="创建时间：2019-07-23 11:03:29 / 修改时间：11:22:05" itemprop="dateCreated datePublished" datetime="2019-07-23T11:03:29+08:00">2019-07-23</time>
             </span>
           
 
@@ -384,20 +384,9 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>被墙往往有两种级别（<strong>封域名</strong>、<strong>封IP</strong>），很幸运 <a href="https://gist.github.com" target="_blank" rel="noopener">https://gist.github.com</a> 是封域名级别的。因此，我们才有可能通过修改本地 hosts 文件，来避免通过网关来进行域名解析，直接从本地获取 IP 地址进行访问。其技术原理可参加<a href="https://sworlife.github.io/2019/07/15/浏览器DNS查询" target="_blank" rel="noopener">浏览器DNS查询流程</a></p>
-<h2 id="修改-hosts-文件"><a href="#修改-hosts-文件" class="headerlink" title="修改 hosts 文件"></a>修改 hosts 文件</h2><ol>
-<li><p>获取 <a href="https://gist.github.com" target="_blank" rel="noopener">https://gist.github.com</a> 的IP地址<br>这个很不好意思说: 百度吧!
-IP: 192.30.253.118</p>
-</li>
-<li><p>hosts 文件路径</p>
-</li>
-</ol>
-<p>MAC: /etc/hosts</p>
-<p>Windows: c/Windows/System32/drivers/etc/hosts</p>
-<ol start="3">
-<li>在hosts 文件末尾添加</li>
-</ol>
-<p><code>192.30.253.118  gist.github.com</code></p>
+        <h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p><code>npm publish</code> 用来发布包，发布时读取的配置是 <code>package.json</code> 文件，比如：name 为包名字，version 为版本号。</p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p><code>npm publish</code> 同时也用来更新包，但一定要更改 <code>package.json</code> 的 version 字段</p>
+<h2 id="停更或撤销"><a href="#停更或撤销" class="headerlink" title="停更或撤销"></a>停更或撤销</h2><p>有时候我们会觉得这个包功能已经完善了，或者我放弃了，再或者我没有精力继续了等，可以使用 <code>npm deprecate &lt;pkg&gt;[@&lt;version&gt;] &lt;message&gt;</code>, 这样，npm 会给尝试安装这个包的人发警告。还有一种情况，我想让 npm 上让这个包消失，<code>npm unpublish --force</code>可以达成愿望，但必须在发布的24小时以内。并且，即使撤销成功，也再不能使用相同的名字重现发布了。</p>
 
       
     </div>
@@ -428,7 +417,7 @@ IP: 192.30.253.118</p>
         
         <div class="post-tags">
           
-            <a href="/tags/开发工具/" rel="tag"># 开发工具</a>
+            <a href="/tags/工程化/" rel="tag"># 工程化</a>
           
         </div>
       
@@ -441,8 +430,8 @@ IP: 192.30.253.118</p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/14/How Browsers Work/" rel="next" title="How Browsers Work">
-                <i class="fa fa-chevron-left"></i> How Browsers Work
+              <a href="/2019/07/23/小程序开发总结/" rel="next" title="微信小程序开发总结">
+                <i class="fa fa-chevron-left"></i> 微信小程序开发总结
               </a>
             
           </div>
@@ -450,10 +439,6 @@ IP: 192.30.253.118</p>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/15/浏览器DNS查询/" rel="prev" title="浏览器DNS查询">
-                浏览器DNS查询 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,7 +597,7 @@ IP: 192.30.253.118</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-hosts-文件"><span class="nav-number">2.</span> <span class="nav-text">修改 hosts 文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">1.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">2.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停更或撤销"><span class="nav-number">3.</span> <span class="nav-text">停更或撤销</span></a></li></ol></div>
             
 
           </div>
