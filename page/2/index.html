@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,7 +68,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
@@ -106,6 +106,8 @@
 <meta name="twitter:description" content="前端开发相关技术博文">
 
 
+
+  <link rel="alternate" href="/atom.xml" title="墨鱼" type="application/atom+xml">
 
 
 
@@ -368,7 +370,27 @@
 
           <br>
           
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.6k</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
           
 
           
@@ -388,52 +410,24 @@
       
         
           
-            <h2 id="安装-item2"><a href="#安装-item2" class="headerlink" title="安装 item2"></a>安装 item2</h2><p><a href="https://www.iterm2.com/" target="_blank" rel="noopener">item2 官网</a></p>
-<p>item2 下载没什么好说的，关键是安装 zsh、oh-my-zsh</p>
-<h2 id="安装-zsh"><a href="#安装-zsh" class="headerlink" title="安装 zsh"></a>安装 zsh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
+            <p>
+              安装 item2item2 官网
+item2 下载没什么好说的，关键是安装 zsh、oh-my-zsh
+安装 zshbrew install zsh
 
-<p>未安装 brew 的同学可参考 <a href="https://sworlife.github.io/2019/07/14/brew-%E5%AE%89%E8%A3%85%E7%88%AC%E5%9D%91%E6%8C%87%E5%8D%97/" target="_blank" rel="noopener">brew 安装爬坑指南</a></p>
-<h2 id="安装-oh-my-zsh"><a href="#安装-oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
-
-<p>参考官网<a href="https://ohmyz.sh/" target="_blank" rel="noopener">oh-my-zsh 官网</a></p>
-<h2 id="配置默认-shell-到-zsh"><a href="#配置默认-shell-到-zsh" class="headerlink" title="配置默认 shell 到 zsh"></a>配置默认 shell 到 zsh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 配置</span><br><span class="line">chsh -s /bin/zsh</span><br><span class="line"></span><br><span class="line">// 查看是否配置成功</span><br><span class="line">// 此时终端打印出 /bin/zsh 恭喜你设置成功</span><br><span class="line">echo $SHELL</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置字体"><a href="#配置字体" class="headerlink" title="配置字体"></a>配置字体</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 下载 PowerFonts 字体</span><br><span class="line">// git clone</span><br><span class="line">git clone https://github.com/powerline/fonts.git --depth=1</span><br><span class="line"></span><br><span class="line">// 安装字体</span><br><span class="line">// cd to folder</span><br><span class="line">cd fonts</span><br><span class="line">// run install shell</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
-
-<h2 id="item2-中设置字体"><a href="#item2-中设置字体" class="headerlink" title="item2 中设置字体"></a>item2 中设置字体</h2><p>具体的操作是 <code>iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text</code>，在Font区域选中 <code>Change Font</code>，然后找到Meslo LG字体。有L、M、S可选，看个人喜好：</p>
-<img width="313" alt="item2_1" src="https://user-images.githubusercontent.com/33422051/59659646-34b94a80-91d9-11e9-80a0-3d7192f1044d.png">
-
-<img width="1033" alt="item2_2" src="https://user-images.githubusercontent.com/33422051/59659665-400c7600-91d9-11e9-952d-3ceb6bbfab54.png">
-
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">主题列表</a></p>
-<p>可从上面的链接进入官方给出的主题列表以及截图，选择自己相要的。</p>
-<p>通过编辑 <code>vi ~/.zshrc</code> 来设置。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p>找到下图中的 ZSH_THEME 并设置为你希望的主题</p>
-<img width="544" alt="item2_3" src="https://user-images.githubusercontent.com/33422051/59659695-50bcec00-91d9-11e9-8d28-db0627a827b0.png">
-
-<h2 id="配置插件"><a href="#配置插件" class="headerlink" title="配置插件"></a>配置插件</h2><p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins" target="_blank" rel="noopener">插件列表</a></p>
-<p>首先将插件下载到 <code>~/.oh-my-zsh/plugins</code>，然后在 <code>~/.zshrc</code> 中进行设置即可，如下图：</p>
-<p><img src="https://user-images.githubusercontent.com/33422051/59659714-59adbd80-91d9-11e9-8e0f-56ed00dbc559.png" alt="item2_4"><br><img width="755" alt="item2_5" src="https://user-images.githubusercontent.com/33422051/59659731-6500e900-91d9-11e9-9eeb-885e2caff971.png"></p>
-<p>例如：命令补全</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.oh-my-zsh/custom/plugins/</span><br><span class="line">git clone https://github.com/zsh-users/zsh-autosuggestions</span><br><span class="line">vi ~/.zshrc</span><br><span class="line">// 找到plugins，修改内容</span><br><span class="line">// 默认打开里面已经有一个git</span><br><span class="line">plugins=(</span><br><span class="line">    git</span><br><span class="line">    zsh-autosuggestions</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>例如：高亮插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.oh-my-zsh/custom/plugins/</span><br><span class="line">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git</span><br><span class="line">vi ~/.zshrc</span><br><span class="line">// 找到plugins，修改内容</span><br><span class="line">plugins=(</span><br><span class="line">    git</span><br><span class="line">    zsh-autosuggestions</span><br><span class="line">    zsh-syntax-highlighting</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>该插件要求 <code>zsh-syntax-highlighting</code> 必须在最后一个。<br>且在文件的最后一行添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh</span><br></pre></td></tr></table></figure>
-
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>一切配置完毕，保存好文件之后调用  <code>source ~/.zshrc</code> 命令来激活配置文件即可。<br>效果如图：</p>
-<img width="755" alt="item2_5" src="https://user-images.githubusercontent.com/33422051/59659783-806bf400-91d9-11e9-866d-7f49a9a9c8fb.png">
-
-<h2 id="适配到-vscode"><a href="#适配到-vscode" class="headerlink" title="适配到 vscode"></a>适配到 vscode</h2><p>首先需要指定 vscode 使用的终端</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"terminal.integrated.shell.osx": "zsh",</span><br></pre></td></tr></table></figure>
-
-<p>这是，主题样式中的一些特殊字体图标可能出现乱码，这时就需要配置终端字体<br>但目前配置失败。编辑器仅支持 monospace 字体。<br><a href="https://github.com/microsoft/vscode/issues/75333" target="_blank" rel="noopener">Only monospace fonts are supported</a></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"terminal.integrated.fontFamily": "Meslo LG",</span><br></pre></td></tr></table></figure>
+未安装 brew 的同学可参考 brew 安装爬坑指南
+安装 oh-my-zsh$ sh -c &quot;$(curl -fsSL https:/
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/14/定制个性化终端/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -576,7 +570,27 @@
 
           <br>
           
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">937</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
           
 
           
@@ -596,16 +610,20 @@
       
         
           
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们知道，使用一个构造函数来创建对象时，需要使用 <code>new</code> 操作符。但在日常开发过程中，往往又会发现很多框架或者库（例如：jQuery、underscore）创建新对象时并没有使用 <code>new</code> 操作符。这样方便了大家书写代码，也显得更易读。那么，他们是怎么实现的呢？</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>总的来说，这些方案都并没有很神奇的突破了 <code>JavaScript</code> 语法限制。而是通过一些巧妙的逻辑（<strong>共享原型</strong>、<strong>原型判断</strong>）来实现。</p>
-<h3 id="方案1——共享原型"><a href="#方案1——共享原型" class="headerlink" title="方案1——共享原型"></a>方案1——共享原型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数</span></span><br><span class="line"><span class="keyword">var</span> Class = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> init();</span><br><span class="line">&#125;</span><br><span class="line">Class.prototype = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 构造对象的逻辑</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line">init.prototype = Class.prototype</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建对象</span></span><br><span class="line"><span class="keyword">var</span> object = Class();</span><br></pre></td></tr></table></figure>
-
-<p>上述解决方案可以看出，构造函数<code>Class</code>调用时，返回了通过 <code>new</code> 操作符来运行 <code>init</code> 方法。但因为 <code>init</code> 的原型与 <code>Class</code> 的原型指向同一个对象，因此 <code>new init()</code> 创建出的对象拥有 <code>Class</code> 的原型。</p>
-<h3 id="方案2——原型判断"><a href="#方案2——原型判断" class="headerlink" title="方案2——原型判断"></a>方案2——原型判断</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Class = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( !(<span class="keyword">this</span> <span class="keyword">instanceof</span> Class) ) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> Class();</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 构造对象的逻辑</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">Class.prototype = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建对象</span></span><br><span class="line"><span class="keyword">var</span> object = Class();</span><br></pre></td></tr></table></figure>
-
-<p>坦白说，这个方案需要对 <code>this</code> 的指向理解比较深刻。当执行 <code>Class()</code> 时，<code>this</code> 为 <code>undefined</code>(严格模式) 或 <code>window</code>。此时，经过 <code>if</code> 判断后，会执行 <code>new Class()</code>。再次执行时，根据 <code>new</code> 操作符的运行机制，<code>this</code> 指向的是将要创建出的对象，这个对象的原型肯定就是 <code>Class</code>，因此，经过 <code>if</code> 判断就不会继续执行 <code>new</code>, 而是向下执行构造对象的逻辑。</p>
-
+            <p>
+              前言我们知道，使用一个构造函数来创建对象时，需要使用 new 操作符。但在日常开发过程中，往往又会发现很多框架或者库（例如：jQuery、underscore）创建新对象时并没有使用 new 操作符。这样方便了大家书写代码，也显得更易读。那么，他们是怎么实现的呢？
+解决方案总的来说，这些方案都并没有
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/14/无-new-操作符构造对象/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -757,6 +775,12 @@
 
 
 
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
 
 
 
@@ -794,7 +818,21 @@
   <span class="author" itemprop="copyrightHolder">swor</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">57k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">52 分钟</span>
   
 </div>
 
@@ -807,7 +845,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.2.0</div>
 
 
 
@@ -892,6 +930,7 @@
 
 
   <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
 
 
 
