@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-10-12T05:54:23.243Z</updated>
+  <updated>2019-10-23T02:14:25.882Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信小程序map组件markers 的 iconPath 临时路径的应用</title>
+    <link href="/2019/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fmap%E7%BB%84%E4%BB%B6markers%E9%85%8D%E7%BD%AE/"/>
+    <id>/2019/10/23/微信小程序map组件markers配置/</id>
+    <published>2019-10-23T01:19:23.000Z</published>
+    <updated>2019-10-23T02:14:25.882Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h2&gt;&lt;p&gt;在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗&lt;/
+      
+    
+    </summary>
+    
+      <category term="前端技术" scheme="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="微信小程序" scheme="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>git 常用命令</title>

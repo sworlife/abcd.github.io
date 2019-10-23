@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发 根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， widt">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序map组件markers 的 iconPath 临时路径的应用">
+<meta property="og:url" content="/2019/10/23/微信小程序map组件markers配置/index.html">
+<meta property="og:site_name" content="墨鱼">
+<meta property="og:description" content="需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发 根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， widt">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-23T02:14:25.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序map组件markers 的 iconPath 临时路径的应用">
+<meta name="twitter:description" content="需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发 根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， widt">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="墨鱼" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="/2019/10/23/微信小程序map组件markers配置/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>微信小程序map组件markers 的 iconPath 临时路径的应用 | 墨鱼</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">墨鱼</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2019/10/23/微信小程序map组件markers配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="swor">
+      <meta itemprop="description" content="前端开发相关技术博文">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="墨鱼">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信小程序map组件markers 的 iconPath 临时路径的应用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-23 09:19:23 / 修改时间：10:14:25" itemprop="dateCreated datePublished" datetime="2019-10-23T09:19:23+08:00">2019-10-23</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端技术/" itemprop="url" rel="index"><span itemprop="name">前端技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发</p>
+<p>根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， width， height，anchor），标签（label）</p>
+<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>通过 iconPath 来配置 marker 图标，城市、价格等动态内容通过 label 来配置</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>label 的层级比 iconPath 高，markers 点击事件触发确只能通过点击 iconPath 触发，就导致 label 遮挡 自身及其他 marker 的 iconPath，使得 marker 点击事件无法触发。尤其数据量大，或者地图缩小，使得数据集中显示。按用户的角度来看，我点击一个 marker，因为数据集中，响应的数据可与与我的预期不一致，但不能不响应。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>既然 label 导致无法触发事件，那就只能放弃，剩下只剩一条路：把动态数据以及图标转换为<strong>临时路径</strong>，全部通过 iconPath 来实现。</p>
+<p>临时路径可以通过 <code>wx.canvasToTempFilePath</code> 来获取, 这就需要 <code>canvas</code> 组件，由于微信小程序无法通过 js 创建节点，所以需要在 <code>.wxml</code> 中事先声明好 <code>canvas</code> 组件。因此，大概流程是这样：</p>
+<p>首先创建模版</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// .wxml</span><br><span class="line">&lt;map&gt;&lt;/map&gt;</span><br><span class="line">&lt;canvas&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后获取数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ajax.get().then(<span class="function"><span class="params">markers</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 将数据画在 canvas 上</span></span><br><span class="line">  drawImage(markers);</span><br><span class="line">  <span class="comment">// 将 canvas 转换为临时路径</span></span><br><span class="line">  getTempFilePath(markers);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>但最好发现，因为 <code>ctx.draw</code>，<code>wx.canvasToTempFilePath</code> 都是异步操作，因此只通过一个 <code>canvas</code> 节点如果要完成大量数据（先绘图，在转换临时路径）操作，就需要依次排队处理，这不但代码难以实现，同时也导致处理时间延长了。</p>
+<p>因此，我们需要针对每一个数据，都分配一个 <code>canvas</code> 组件，然后并行处理（先绘图，在转换临时路径），利用 <code>Promise.all</code> 来等待所以异步操作完成时，在返回结果，更新 markers，实现需求。</p>
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>动态生成 canvas 组件渲染完成后，才能进行绘图、转换为临时路径</li>
+<li><code>ctx.draw</code>，<code>wx.canvasToTempFilePath</code> 都是回调式的 API，因此需要转换为 Promise 式的 API</li>
+</ul>
+<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- .wxml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">markers</span>=<span class="string">"&#123;&#123;markers&#125;&#125;"</span> </span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;canvasList&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"&#123;&#123;item.id&#125;&#125;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">canvas-id</span>=<span class="string">"markerIcon-&#123;&#123;index&#125;&#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">_getMarkers() &#123;</span><br><span class="line">  service.getMarkers().then(<span class="function"><span class="params">markers</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> canvasList = markers.map(<span class="function">(<span class="params">&#123;id&#125;</span>) =&gt;</span> (&#123;id&#125;));</span><br><span class="line">    <span class="comment">// 先利用 canvasList 渲染 canvas，后 画图获取 iconPath</span></span><br><span class="line">    <span class="keyword">this</span>.setData(&#123; canvasList &#125;, () =&gt; <span class="keyword">this</span>._drawMarkersIcon(markers));</span><br><span class="line">  &#125;, err =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">_drawMarkersIcon(markers) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.all(</span><br><span class="line">    markers.map(<span class="function">(<span class="params">_item, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> canvasId = <span class="string">`markerIcon-<span class="subst">$&#123;index&#125;</span>`</span>;</span><br><span class="line">      <span class="keyword">const</span> ctx = wx.createCanvasContext(canvasId);</span><br><span class="line">      <span class="comment">// 绘图</span></span><br><span class="line">      drawImage(ctx)</span><br><span class="line">      <span class="comment">// ctx.draw,wx.canvasToTempFilePath 转换为 Promise, 最终将返回 marker 配置</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        ctx.draw(<span class="literal">false</span>, () =&gt; &#123;</span><br><span class="line">          resolve(</span><br><span class="line">            <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">              wx.canvasToTempFilePath(&#123; </span><br><span class="line">                canvasId,</span><br><span class="line">                success: resolve,</span><br><span class="line">                failed: reject</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">              _item.iconPath = res.tempFilePath;</span><br><span class="line">              <span class="keyword">return</span> _item;</span><br><span class="line">            &#125;, err =&gt; &#123;</span><br><span class="line">              <span class="built_in">console</span>.error(err);</span><br><span class="line">            &#125;)</span><br><span class="line">          );</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  ).then(<span class="function"><span class="params">markers</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123; markers &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>微信小程序 map 组件的 markers 事件触发只能通过 iconPath 配置的图标触发。其他诸如 label 类的元素还会起到遮挡作用。因此，label 这个属性在需要事件触发的情况下，基本是废掉，不应该考虑使用。</li>
+<li>利用 canvas 来定制数据图片，并用于界面展示是可行的。这个能力应该能应用于非小程序（web、h5）,且实现更加优雅（js 创建/删除元素，与界面解藕）</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/微信小程序/" rel="tag"># 微信小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/12/git-常用命令/" rel="next" title="git 常用命令">
+                <i class="fa fa-chevron-left"></i> git 常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">swor</p>
+  <div class="site-description motion-element" itemprop="description">前端开发相关技术博文</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现思路"><span class="nav-number">3.</span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">4.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">5.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要代码"><span class="nav-number">6.</span> <span class="nav-text">主要代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">swor</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">60k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">54 分钟</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
