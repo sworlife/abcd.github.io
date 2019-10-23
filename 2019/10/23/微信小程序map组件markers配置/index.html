@@ -93,18 +93,18 @@
   };
 </script>
 
-  <meta name="description" content="需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发 根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， widt">
+  <meta name="description" content="代码的世界就是这样变换莫测，今天刚写好的 blog，马上就过期了小程序基础库更新日志 v2.9.0 (2019-10-09) 第17条：U 更新 组件 map 增加 label 点击事件 反馈详情  需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的">
 <meta name="keywords" content="微信小程序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序map组件markers 的 iconPath 临时路径的应用">
 <meta property="og:url" content="/2019/10/23/微信小程序map组件markers配置/index.html">
 <meta property="og:site_name" content="墨鱼">
-<meta property="og:description" content="需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发 根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， widt">
+<meta property="og:description" content="代码的世界就是这样变换莫测，今天刚写好的 blog，马上就过期了小程序基础库更新日志 v2.9.0 (2019-10-09) 第17条：U 更新 组件 map 增加 label 点击事件 反馈详情  需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T02:14:25.882Z">
+<meta property="og:updated_time" content="2019-10-23T08:56:43.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序map组件markers 的 iconPath 临时路径的应用">
-<meta name="twitter:description" content="需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发 根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， widt">
+<meta name="twitter:description" content="代码的世界就是这样变换莫测，今天刚写好的 blog，马上就过期了小程序基础库更新日志 v2.9.0 (2019-10-09) 第17条：U 更新 组件 map 增加 label 点击事件 反馈详情  需求在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗 需求分析在这个需求分析中，我们只关注 markers 的">
 
 
 
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="创建时间：2019-10-23 09:19:23 / 修改时间：10:14:25" itemprop="dateCreated datePublished" datetime="2019-10-23T09:19:23+08:00">2019-10-23</time>
+              <time title="创建时间：2019-10-23 09:19:23 / 修改时间：16:56:43" itemprop="dateCreated datePublished" datetime="2019-10-23T09:19:23+08:00">2019-10-23</time>
             </span>
           
 
@@ -375,7 +375,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">3k</span>
+              <span title="本文字数">3.1k</span>
             </span>
           
 
@@ -406,7 +406,10 @@
       
 
       
-        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗</p>
+        <blockquote>
+<p>代码的世界就是这样变换莫测，今天刚写好的 blog，马上就过期了<br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/release/" target="_blank" rel="noopener">小程序基础库更新日志</a> v2.9.0 (2019-10-09) 第17条：U 更新 组件 map 增加 label 点击事件 反馈详情</p>
+</blockquote>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗</p>
 <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>在这个需求分析中，我们只关注 markers 的配置，以及 markers 事件触发</p>
 <p>根据文档，很容易找到 markers 的相关配置，比如经纬度（longitude， latitude），图标（iconPath，rotate，alpha， width， height，anchor），标签（label）</p>
 <h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>通过 iconPath 来配置 marker 图标，城市、价格等动态内容通过 label 来配置</p>
@@ -692,7 +695,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">54 分钟</span>
+    <span title="站点阅读时长">55 分钟</span>
   
 </div>
 

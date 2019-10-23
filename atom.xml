@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-10-23T02:14:25.882Z</updated>
+  <updated>2019-10-23T08:56:43.243Z</updated>
   <id>/</id>
   
   <author>
@@ -21,13 +21,14 @@
     <link href="/2019/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fmap%E7%BB%84%E4%BB%B6markers%E9%85%8D%E7%BD%AE/"/>
     <id>/2019/10/23/微信小程序map组件markers配置/</id>
     <published>2019-10-23T01:19:23.000Z</published>
-    <updated>2019-10-23T02:14:25.882Z</updated>
+    <updated>2019-10-23T08:56:43.243Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h2&gt;&lt;p&gt;在一个地图上需要根据后端接口提供的经纬度进行标注，标注内容是动态的，包括：城市，价格等。点击 markers 需要触发事件，拉起一个弹窗&lt;/
+        &lt;blockquote&gt;
+&lt;p&gt;代码的世界就是这样变换莫测，今天刚写好的 blog，马上就过期了&lt;br&gt;&lt;a href=&quot;https://developers.weixin.qq.com/miniprogram/dev/framework/release/&quot; target=&quot;_b
       
     
     </summary>
